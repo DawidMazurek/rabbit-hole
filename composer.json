@@ -1,5 +1,16 @@
 {
+  "name": "dawidmazurek/rabbit-hole",
+  "description": "RabbitMQ task-worker environment",
+  "type": "library",
   "require": {
-    "videlalvaro/php-amqplib": "v2.5.1"
-  }
+    "videlalvaro/php-amqplib": "^2.5"
+  },
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Dawid Mazurek",
+      "email": "dawid@dawidmazurek.pl"
+    }
+  ],
+  "minimum-stability": "stable"
 }
