@@ -2,7 +2,7 @@
 
 namespace RabbitHole\Gateway;
 
-
+use RabbitHole\Service\QueueMapper;
 use RabbitHole\Task\TaskInterface;
 
 interface TaskGatewayInterface {
@@ -11,5 +11,11 @@ interface TaskGatewayInterface {
      * @param TaskInterface $task
      * @return bool
      */
-    public function dispatch(TaskInterface $task);
+    public function store(TaskInterface $task);
+
+    /**
+     * @param QueueMapper $queueMapper
+     * @return \Generator
+     */
+    public function get(QueueMapper $queueMapper);
 }
