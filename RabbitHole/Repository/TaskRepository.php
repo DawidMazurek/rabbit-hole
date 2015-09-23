@@ -4,6 +4,7 @@ namespace RabbitHole\Repository;
 
 use RabbitHole\Gateway\TaskGatewayInterface;
 use RabbitHole\Task\TaskInterface;
+use RabbitHole\Service\QueueMapper;
 
 class TaskRepository
 {
@@ -25,16 +26,19 @@ class TaskRepository
      * @param TaskInterface $task
      * @return bool
      */
-    public function dispatchTask(TaskInterface $task)
+    public function store(TaskInterface $task)
     {
-        return $this->taskGateway->dispatch($task);
+        return $this->taskGateway->store($task);
     }
 
     /**
-     * @param string $queueName
+     * @param QueueMapper $queueMapper
+     * @return \Generator[TaskInterface]
      */
-    public function getTaskByQueueName($queueName)
+    public function getTasks(QueueMapper $queueMapper)
     {
-
+        foreach($this->taskGateway->get($queueMapper) as $taskObject) {
+            yield $taskObject; // yield object with callback to ack/nack
+        }
     }
 }
