@@ -11,12 +11,12 @@ class DispatchTask
     /**
      * @var TaskInterface
      */
-    private $task;
+    protected $task;
 
     /**
      * @var TaskRepository
      */
-    private $taskRepository;
+    protected $taskRepository;
 
     /**
      * @param TaskInterface $task
@@ -33,6 +33,6 @@ class DispatchTask
      */
     public function execute()
     {
-        return $this->taskRepository->dispatchTask($this->task);
+        return $this->taskRepository->store($this->task);
     }
 }
